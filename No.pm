@@ -1,9 +1,11 @@
-#!/usr/bin/perl -w 
+package Lingua::Stem::Snowball::No;
+use strict;
+use bytes;
 # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 # Lingua::Stem::Snowball::No - Norwegian stemmer
-# :: based upon the norwegian stemmer algorithm at snowball.sourceforge.net
+# :: based upon the norwegian stemmer algorithm at snowball.tartarus.org
 #	 by Martin Porter.
-# (c) 2001 Ask Solem Hoel <ask@unixmonks.net>
+# (c) 2001-2002 Ask Solem Hoel <ask@unixmonks.net>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License version 2,
@@ -20,24 +22,22 @@
 # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #####
 
-package Lingua::Stem::Snowball::No;
 
-use strict;
 use vars qw(%cache $VERSION);
 
-$VERSION = 0.5;
+$VERSION = 1.0;
 
 # special characters
-my $ae = chr(0x91);
-my $ao = chr(0x86);
-my $oe = chr(0x9b);
+my $ae = "\xE6";
+my $ao = "\xE5";
+my $oe = "\xF8";
 
 # delete the s if a "s ending" is preceeded by one
 # of these characters.
 my $s_ending = "bcdfghjklmnoprtvyz";
 
 # norwegian vowels.
-my $vowels = "aeiouy+$ae$ao$oe";
+my $vowels = "aeiouy$ae$ao$oe";
 
 # ####
 # the endings in step 1
@@ -48,9 +48,9 @@ my $vowels = "aeiouy+$ae$ao$oe";
 #	}
 #	@endings = reverse sort $bylength @endings;
 my @endings = qw/
-	hetenes hetene hetens heten heter endes edes ende
-	ande enes erte ast het ets ene ert ane ens ers ede es as
-	er ar et en e a s
+	hetenes hetens hetene endes heter heten enes edes ende erte
+	ande ast het ets ers ert ens ene ane ede et es as er ar en
+	e a s
 /;
 
 # the endings in step 2
@@ -82,6 +82,10 @@ sub use_cache {
 
 sub stem {
 	my ($self, $word) = @_;
+	$word = lc $word;
+	$word =~ y/\xC6/\xE6/;
+	$word =~ y/\xD8/\xF8/;
+	$word =~ y/\xC5/\xE5/;
 	my $orig_word;
 
 	if($self->use_cache()) {
@@ -148,9 +152,8 @@ sub stem {
 
 	# ### STEP 3
 	foreach my $ending (@endings2) {
-		my $endinglen = length $ending;
-		if(substr($rs, $rslen - $endinglen, $rslen) eq $ending) {
-			$word = substr($word, 0, $wlen - $endinglen);
+		if($rs =~ /\Q$ending\E$/) {
+			$word = substr($word, 0, $wlen - length($ending));
 			last;
 		}
 	}
@@ -224,7 +227,7 @@ Lingua::Stem::Snowball::No - Porters stemming algorithm for Norwegian
 
 The stem function takes a scalar as a parameter and stems the word
 according to Martin Porters Norwegian stemming algorithm,
-which can be found at the Snowball website: L<http://snowball.sourceforge.net/>.
+which can be found at the Snowball website: L<http://snowball.tartarus.org/>.
 
 It also supports caching if you pass the use_cache option when constructing
 a new L:S:S:N object.
@@ -239,7 +242,7 @@ Ask Solem Hoel, E<lt>ask@unixmonks.netE<gt>
 
 =head1 SEE ALSO
 
-L<perl>. L<Lingua::Stem::Snowball>. L<Lingua::Stem>. L<http://snowball.sourceforge.net>.
+L<perl>. L<Lingua::Stem::Snowball>. L<Lingua::Stem>. L<http://snowball.tartarus.org>.
 
 =cut
 ~

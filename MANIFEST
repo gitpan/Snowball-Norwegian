@@ -3,4 +3,6 @@ Makefile.PL
 MANIFEST
 No.pm
 README
+stemmer.pl
 test.pl
+diffs.txt

@@ -1,8 +1,8 @@
-Lingua/Stem/Snowball/No version 0.5
+Lingua/Stem/Snowball/No version 1.0
 ==============================
 
 Lingua::Stem::Snowball::No is a perl port of the norwegian
-stemmer at http://snowball.sourceforge.net.
+stemmer at http://snowball.tartarus.org.
 
 It also supports caching of words and it's stemmed equaivilent.
 
@@ -21,5 +21,5 @@ None
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2001 Ask Solem Hoel <ask@unixmonks.net>
+Copyright (C) 2001-2002 Ask Solem Hoel <ask@unixmonks.net>
 

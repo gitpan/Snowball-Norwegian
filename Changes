@@ -1,5 +1,9 @@
 Revision history for Perl extension Lingua::Stem::Snowball::No
 
+1.00  Fri Nov 01 2002
+  Works correctly against all the words in the diffs.txt database.
+  Changed the URL to the Snowball homepage.
+
 0.05  Wed Nov 28 2001
 	Initial Release.	
 
