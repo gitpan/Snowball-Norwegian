@@ -1,11 +1,17 @@
 package Lingua::Stem::Snowball::No;
 use strict;
 use bytes;
+# $Id$
+# $Source$
+# $Author$
+# $HeadURL$
+# $Revision$
+# $Date$
 # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 # Lingua::Stem::Snowball::No - Norwegian stemmer
 # :: based upon the norwegian stemmer algorithm at snowball.tartarus.org
 #	 by Martin Porter.
-# (c) 2001-2002 Ask Solem Hoel <ask@unixmonks.net>
+# (c) 2001-2007 Ask Solem Hoel <ask@0x61736b.net>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License version 2,
@@ -23,9 +29,10 @@ use bytes;
 #####
 
 
-use vars qw(%cache $VERSION);
+use vars qw($VERSION);
+$VERSION = 1.1;
 
-$VERSION = 1.0;
+my %cache = ( );
 
 # special characters
 my $ae = "\xE6";
@@ -59,22 +66,22 @@ my @endings2 = qw/
 	hetslov slov elov elig eleg els lig eig lov leg ig
 /;
 
-%Lingua::Stem::Snowball::No::cache = ();
-
 sub new {
-	my $pkg = shift;
+	my $class = shift;
 	my %arg = @_;
-	my $self = {};
-	bless $self, $pkg;
-	if($arg{use_cache}) {
+	my $self = { };
+
+	bless $self, $class;
+	if ($arg{use_cache}) {
 		$self->use_cache(1);
 	}
+
 	return $self;
 }
 
 sub use_cache {
-	my($self, $use_cache) = @_;
-	if($use_cache) {
+	my ($self, $use_cache) = @_;
+	if ($use_cache) {
 		$self->{USE_CACHE} = 1;
 	}
 	return $self->{USE_CACHE};
@@ -82,13 +89,14 @@ sub use_cache {
 
 sub stem {
 	my ($self, $word) = @_;
+    no warnings;
 	$word = lc $word;
 	$word =~ y/\xC6/\xE6/;
 	$word =~ y/\xD8/\xF8/;
 	$word =~ y/\xC5/\xE5/;
 	my $orig_word;
 
-	if($self->use_cache()) {
+	if ($self->use_cache( )) {
 		$orig_word = $word;
 		my $cached_word = $cache{$word};
 		return $cached_word if $cached_word;
@@ -167,6 +175,7 @@ sub stem {
 
 sub getsides {
     my $word = shift;
+    no warnings;
     my $wlen = length $word;
 
     my($ls, $rs) = (undef, undef); # left side and right side.
@@ -209,9 +218,14 @@ sub getsides {
 1;
 
 __END__
+
 =head1 NAME
 
 Lingua::Stem::Snowball::No - Porters stemming algorithm for Norwegian
+
+=head1 VERSION
+
+This document describes version 1.1.
 
 =head1 SYNOPSIS
 
@@ -238,11 +252,43 @@ Lingua::Stem::Snowball::No has nothing to export.
 
 =head1 AUTHOR
 
-Ask Solem Hoel, E<lt>ask@unixmonks.netE<gt>
+Ask Solem Hoel, E<lt>ask@0x61736b.netE<gt>
 
 =head1 SEE ALSO
 
 L<perl>. L<Lingua::Stem::Snowball>. L<Lingua::Stem>. L<http://snowball.tartarus.org>.
+L<Lingua::Stem::Snowball> L<Lingua::Stem::Snowball::Se> L<Lingua::Stem::Snowball::Da>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c), 2007 Ask Solem C<< ask@0x61736b.net >>.
+
+All rights reserved.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.6 or,
+at your option, any later version of Perl 5 you may have available.
+
+=head1 DISCLAIMER OF WARRANTY                                            
+                                                                         
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE
+SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE
+STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE 
+SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND  
+PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE,
+YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.   
+                                                                         
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
+COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE
+SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE SOFTWARE (INCLUDING BUT NOT LIMITED TO
+LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
+THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER     
+SOFTWARE), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE    
+POSSIBILITY OF SUCH DAMAGES.
 
 =cut
 ~

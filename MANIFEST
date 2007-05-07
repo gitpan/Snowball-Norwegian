@@ -1,8 +1,13 @@
+Build.PL
 Changes
+lib/Lingua/Stem/Snowball/No.pm
+LICENSE
 Makefile.PL
-MANIFEST
-No.pm
+MANIFEST			This list of files
+META.yml
 README
-stemmer.pl
-test.pl
-diffs.txt
+t/00-pod_coverage.t.disabled
+t/00-POD_valid.t
+t/01-load.t
+t/02-stem.t
+t/diffs.txt

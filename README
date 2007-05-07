@@ -1,4 +1,4 @@
-Lingua/Stem/Snowball/No version 1.0
+Lingua/Stem/Snowball/No version 1.1
 ==============================
 
 Lingua::Stem::Snowball::No is a perl port of the norwegian
@@ -21,5 +21,5 @@ None
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2001-2002 Ask Solem Hoel <ask@unixmonks.net>
+Copyright (C) 2001-2007 Ask Solem Hoel <ask@0x61736b.net>
 
