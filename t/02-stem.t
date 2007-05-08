@@ -1,14 +1,14 @@
 #!/usr/local/bin/perl
 use strict;
 use warnings;
-# $Id$
-# $Source$
-# $Author$
+# $Id: 02-stem.t,v 1.1 2007/05/07 11:35:27 ask Exp $
+# $Source: /opt/CVS/NoSnowball/t/02-stem.t,v $
+# $Author: ask $
 # $HeadURL$
-# $Revision$
-# $Date$
+# $Revision: 1.1 $
+# $Date: 2007/05/07 11:35:27 $
 use vars qw($VERSION);
-$VERSION = 1.1;
+$VERSION = 1.2;
 
 my $THIS_TEST_HAS_TESTS = 20_630;
 my $DEBUG = 1;

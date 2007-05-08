@@ -1,5 +1,8 @@
+bin/.exists
+bin/stemmer-no.pl
 Build.PL
 Changes
+examples/stemmer.pl
 lib/Lingua/Stem/Snowball/No.pm
 LICENSE
 Makefile.PL

@@ -8,6 +8,7 @@ sub NO  { 0 };
 my $builder = Module::Build->new(
     module_name          => 'Lingua::Stem::Snowball::No',
     license              => 'perl',
+    dist_name            => 'Snowball-Norwegian',
     dist_author          => 'Ask Solem <ASKSH@cpan.org>',
     dist_version_from    => 'lib/Lingua/Stem/Snowball/No.pm',
     all_from             => 'lib/Lingua/Stem/Snowball/No.pm',

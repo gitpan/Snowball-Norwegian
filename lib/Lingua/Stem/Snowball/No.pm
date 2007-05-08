@@ -1,12 +1,12 @@
 package Lingua::Stem::Snowball::No;
 use strict;
 use bytes;
-# $Id$
-# $Source$
-# $Author$
+# $Id: No.pm,v 1.1 2007/05/07 11:35:26 ask Exp $
+# $Source: /opt/CVS/NoSnowball/lib/Lingua/Stem/Snowball/No.pm,v $
+# $Author: ask $
 # $HeadURL$
-# $Revision$
-# $Date$
+# $Revision: 1.1 $
+# $Date: 2007/05/07 11:35:26 $
 # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 # Lingua::Stem::Snowball::No - Norwegian stemmer
 # :: based upon the norwegian stemmer algorithm at snowball.tartarus.org
@@ -30,7 +30,7 @@ use bytes;
 
 
 use vars qw($VERSION);
-$VERSION = 1.1;
+$VERSION = 1.2;
 
 my %cache = ( );
 

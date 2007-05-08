@@ -1,17 +1,17 @@
 #!/usr/local/bin/perl
-# $Id$
-# $Source$
-# $Author$
+# $Id: 00-pod_coverage.t.disabled,v 1.1 2007/05/07 11:35:27 ask Exp $
+# $Source: /opt/CVS/NoSnowball/t/00-pod_coverage.t.disabled,v $
+# $Author: ask $
 # $HeadURL$
-# $Revision$
-# $Date$
+# $Revision: 1.1 $
+# $Date: 2007/05/07 11:35:27 $
 use strict;
 use warnings;
 use Test::More;
 use Test::Pod::Coverage;
 use English qw( -no_match_vars );
 use vars qw($VERSION);
-$VERSION = 1.1;
+$VERSION = 1.2;
 
 eval 'use Test::Pod::Coverage 1.00'; ## no critic;
 if ($EVAL_ERROR) {
